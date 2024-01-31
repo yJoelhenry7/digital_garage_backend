@@ -18,9 +18,9 @@ app.post('/addService/:id', async (req, res) => {
             id : req.body.id,
             serviceName : req.body.serviceName,
             cost : req.body.cost,
-            package: req.body.package,
             description: req.body.description,
             rating: req.body.rating,
+            ratings:req.body.ratings,
             serviceImage: req.body.serviceImage
         };
         const response = await db.collection("services").doc(id).set(requestJson);
@@ -31,18 +31,18 @@ app.post('/addService/:id', async (req, res) => {
     }
 })
 
-app.post('/addServiceRequest/:serviceId', async (req, res) => {
+app.post('/addServiceRequest', async (req, res) => {
     try{
-        const id = req.params.serviceId;
+        const id = req.body.serviceId;
         const requestJson ={
            serviceId: req.body.serviceId,
            userId: req.body.userId,
            status: req.body.status,
            serviceName : req.body.serviceName,
            cost : req.body.cost,
-           package: req.body.package,
            description: req.body.description,
            rating: req.body.rating,
+           ratings: req.body.ratings,
            serviceImage: req.body.serviceImage
         };
         const response = await db.collection("serviceRequest").doc(id).set(requestJson);
